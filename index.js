@@ -13,7 +13,7 @@
  * Example of usage of this higher-order function:
  * Invoking `processFirstItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'foofoo'.
-*/
+ */
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
@@ -32,13 +32,13 @@ function processFirstItem(stringList, callback) {
  * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
  *
-*/
+ */
 
 // counter1 code
 function counterMaker() {
   let count = 0;
   return function counter() {
-   return count++;
+    return count++;
   }
 }
 
@@ -56,11 +56,13 @@ function counter2() {
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
+function inning() {
 
-    /*Code Here*/
+  return Math.floor(Math.random() * 2) + 1
 
 }
+
+console.log(inning());
 
 /* Task 3: finalScore()
 
@@ -74,11 +76,20 @@ finalScore(inning, 9) might return:
   "Away": 5,
 }
 
-*/ 
+*/
 
-function finalScore(/*code Here*/){
+function finalScore(inning, numOfInning) {
+  const scores = {
+    homeScore: 0,
+    awayScore: 0
+  };
 
-  /*Code Here*/
+  for (i = 0; i < numOfInning; i++) {
+    scores.homeScore += inning();
+    scores.awayScore += inning();
+  }
+
+  return scores;
 
 }
 
@@ -103,8 +114,6 @@ and returns the score at each pont in the game, like so:
 Final Score: awayTeam - homeTeam */
 
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard( /* CODE HERE */ ) {
   /* CODE HERE */
 }
-
-
