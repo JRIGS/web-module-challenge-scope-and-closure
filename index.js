@@ -58,7 +58,7 @@ Write a function called `inning` that returns a random number of points that a t
 
 function inning() {
 
-  return Math.floor(Math.random() * 2) + 1
+  return Math.floor(Math.random() * 3)
 
 }
 
@@ -66,7 +66,8 @@ console.log(inning());
 
 /* Task 3: finalScore()
 
-Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and and returns the final score of the game in the form of an object.
+Write a higher order function called `finalScore` that accepts the callback function `inning` (from above) and a number of innings and
+returns the final score of the game in the form of an object.
 
 For example, 
 
@@ -93,6 +94,8 @@ function finalScore(inning, numOfInning) {
 
 }
 
+console.log(finalScore(inning, 9));
+
 /* Task 4: 
 
 Create a function called `scoreboard` that accepts the following parameters: 
@@ -113,7 +116,39 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
+function getInningScore(inning){
 
-function scoreboard( /* CODE HERE */ ) {
-  /* CODE HERE */
+  const scores = {
+    homeScore: inning(),
+    awayScore: inning()
+  };
+  return scores
 }
+
+// console.log(getInningScore(inning));
+
+function scoreboard(getInningScoreCb, inningCb, numOfInnings) {
+ const scoreByInning = [];
+  // console.log(getInningScoreCb(inningCb));
+for (let i=0; i < numOfInnings; i++){
+  const currentInning = getInningScoreCb(inningCb)
+  homeScore = homeScore + currentInning.Home
+  homeScore = awayScore + currentInning.Away
+  scoreByInning.push(`Inning ${i + 1} Away ${currentInning.Away} - Home ${currentInning.Home}`);
+  
+  // console.log(getInningScoreCb(inningCb));
+  // console.log(i);
+  }
+
+  if(homeScore === awayScore){
+    scoreByInning.push(`We need a tie breaker! Away ${currentInning.Away} - Home ${currentInning.Home} `)
+  }
+  else {
+    scoreByInning.push(`Final Score: ${currentInning.Away} - Home ${currentInning.Home} `)
+  }
+  return scoreByInning;
+}
+
+scoreboard(getInningScore, inning, 9)
+
+
